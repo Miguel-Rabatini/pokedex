@@ -21,13 +21,21 @@ type TitledContainerProps = {
   children: ReactNode;
 };
 
+const PokemonName = () => {
+  const { pokemonName } = usePokemonInfoArticleData();
+
+  return (
+    <span className="text-balance text-center text-2xl">{pokemonName}</span>
+  );
+};
+
 const PokemonIdentification = () => {
-  const { pokemonNumber, pokemonName } = usePokemonInfoArticleData();
+  const { pokemonNumber } = usePokemonInfoArticleData();
 
   return (
     <h1 className="flex flex-col items-center">
       <PokemonNumber pokemonNumber={pokemonNumber} className="text-xl" />{" "}
-      <span className="text-balance text-center text-2xl">{pokemonName}</span>
+      <PokemonName />
     </h1>
   );
 };
@@ -72,7 +80,7 @@ const PokemonStatListSection = () => {
   );
 };
 
-const PokemonInfoSectionFirstRow = () => {
+const PokemonImageAndStatListSection = () => {
   const { pokemonImage } = usePokemonInfoArticleData();
 
   return (
@@ -97,14 +105,24 @@ const PokemonTypeNameListSection = () => {
   );
 };
 
-const PokemonPhysiqueInfoSection = () => {
-  const { pokemonHeight, pokemonWeight } = usePokemonInfoArticleData();
+const PokemonHeightSpan = () => {
+  const { pokemonHeight } = usePokemonInfoArticleData();
 
+  return <span>Height: {pokemonHeight}dm</span>;
+};
+
+const PokemonWeightSpan = () => {
+  const { pokemonWeight } = usePokemonInfoArticleData();
+
+  return <span>Weight: {pokemonWeight}hg</span>;
+};
+
+const PokemonPhysiqueInfoSection = () => {
   return (
     <TitledContainer title="Physique">
       <div className="flex flex-col items-center">
-        <span>Height: {pokemonHeight}dm</span>
-        <span>Weight: {pokemonWeight}hg</span>
+        <PokemonHeightSpan />
+        <PokemonWeightSpan />
       </div>
     </TitledContainer>
   );
@@ -132,7 +150,7 @@ const PokemonAbilityNameList = () => {
   );
 };
 
-const PokemonAbilityListSection = () => {
+const PokemonAbilityNameListSection = () => {
   return (
     <TitledContainer title="Abilities">
       <PokemonAbilityNameList />
@@ -140,13 +158,13 @@ const PokemonAbilityListSection = () => {
   );
 };
 
-const PokemonInfoSectionSecondRow = () => {
+const PokemonOtherInfoSection = () => {
   return (
     <section className="flex flex-wrap items-start justify-center gap-6">
       <PokemonTypeNameListSection />
       <PokemonPhysiqueInfoSection />
       <PokemonSpeciesNameSection />
-      <PokemonAbilityListSection />
+      <PokemonAbilityNameListSection />
     </section>
   );
 };
@@ -154,8 +172,8 @@ const PokemonInfoSectionSecondRow = () => {
 const PokemonInfoSection = () => {
   return (
     <section className="flex flex-col items-center gap-8">
-      <PokemonInfoSectionFirstRow />
-      <PokemonInfoSectionSecondRow />
+      <PokemonImageAndStatListSection />
+      <PokemonOtherInfoSection />
     </section>
   );
 };

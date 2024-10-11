@@ -6,8 +6,8 @@ import App from "../App";
 
 // Pages
 import ErrorPage from "../pages/ErrorPage";
-import PokedexPage from "../pages/PokedexPage";
 import PokemonInfoPage from "../pages/PokemonInfoPage";
+import PokedexPage from "../pages/PokedexPage";
 
 const router = createBrowserRouter([
   {
