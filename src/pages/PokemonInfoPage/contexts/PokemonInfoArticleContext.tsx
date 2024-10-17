@@ -25,6 +25,16 @@ type PokemonInfoArticleDataProviderProps = {
 const PokemonInfoArticleDataContext =
   createContext<PokemonInfoArticleDataContextType | null>(null);
 
+// eslint-disable-next-line react-refresh/only-export-components
+export const usePokemonInfoArticleData = () => {
+  const context = useContext(PokemonInfoArticleDataContext);
+  if (!context)
+    throw new Error(
+      "usePokemonInfoArticleData must be used within a PokemonInfoArticleDataProvider",
+    );
+  return context;
+};
+
 export const PokemonInfoArticleDataProvider = ({
   value,
   children,
@@ -34,13 +44,4 @@ export const PokemonInfoArticleDataProvider = ({
       {children}
     </PokemonInfoArticleDataContext.Provider>
   );
-};
-
-export const usePokemonInfoArticleData = () => {
-  const context = useContext(PokemonInfoArticleDataContext);
-  if (!context)
-    throw new Error(
-      "usePokemonInfoArticleData must be used within a PokemonInfoArticleDataProvider"
-    );
-  return context;
 };

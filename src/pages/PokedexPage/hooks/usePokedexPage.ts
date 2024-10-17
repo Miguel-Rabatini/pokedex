@@ -22,7 +22,6 @@ const usePokemonNamedAPIResourceListInfiniteQuery = () => {
     initialPageParam: "https://pokeapi.co/api/v2/pokemon?offset=0&limit=12",
     getNextPageParam: (lastPage) => lastPage.next,
   });
-
   return {
     pokemonNamedAPIResourceListInfiniteQueryData,
     pokemonNamedAPIResourceListInfiniteQueryIsLoading,
@@ -40,7 +39,6 @@ const usePokemonQueries = (pokemonNames: string[]) => {
       queryFn: () => getPokemonByName(pokemonName),
     })),
   });
-
   return {
     pokemons: pokemonQueries.map((pokemonQuery) => pokemonQuery.data),
     somePokemonQueryIsLoading: pokemonQueries.some(
